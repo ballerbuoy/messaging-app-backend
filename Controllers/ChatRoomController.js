@@ -32,6 +32,14 @@ class ChatRoomController extends DB {
 
         const existingChatRoomsJSON = await this.readFromDB();
         const existingChatRooms = JSON.parse(existingChatRoomsJSON);
+
+        if (!existingChatRooms[roomId]) {
+          reject({
+            code: 400,
+            message: ERROR_MESSAGES[400].ROOM_NOT_EXIST,
+          });
+        }
+
         const currentRoomMessageHistory =
           existingChatRooms[roomId].messageHistory;
         const newRoomMessageHistory = [
@@ -48,7 +56,7 @@ class ChatRoomController extends DB {
         const newChatRoomsJSON = JSON.stringify(existingChatRooms);
         await this.writeToDB(newChatRoomsJSON);
 
-        resolve(payload);
+        resolve(JSON.stringify(payload));
       } catch (err) {
         reject({
           ...err,
@@ -87,19 +95,21 @@ class ChatRoomController extends DB {
           });
         }
 
-        payload.participants.forEach((user) => {
-          if (payload.type === "personal") {
-            users[user].personalChatsSubscribed = [
-              ...users[user].personalChatsSubscribed,
-              { roomId: payload.roomId, roomName: payload.roomName },
-            ];
-          } else {
-            users[user].groupChatsSubscribed = [
-              ...users[user].groupChatsSubscribed,
-              { roomId: payload.roomId, roomName: payload.roomName },
-            ];
-          }
-        });
+        payload.participants
+          .filter((user) => users[user])
+          .forEach((user) => {
+            if (payload.type === "personal") {
+              users[user].personalChatsSubscribed = [
+                ...users[user].personalChatsSubscribed,
+                { roomId: payload.roomId, roomName: payload.roomName },
+              ];
+            } else {
+              users[user].groupChatsSubscribed = [
+                ...users[user].groupChatsSubscribed,
+                { roomId: payload.roomId, roomName: payload.roomName },
+              ];
+            }
+          });
 
         const newChatRooms = {
           ...existingChatRooms,

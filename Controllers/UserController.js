@@ -32,24 +32,24 @@ class UserController extends DB {
   }
 
   removeSensitiveInfo(userData) {
-    const newUserData = {};
-    Object.keys(userData).forEach((key) => {
-      newUserData[key] = {
-        username: userData[key].username,
-        avatar: userData[key].avatar,
-      };
-    });
-    return newUserData;
+    return Object.values(userData).reduce((acc, user) => {
+      return [...acc, { username: user.username, avatar: user.avatar }];
+    }, []);
   }
 
   getUsers(username = "") {
     return new Promise(async (resolve, reject) => {
       try {
         const userDataJSON = await this.readFromDB();
-        const userData = this.removeSensitiveInfo(JSON.parse(userDataJSON));
-        username
-          ? resolve(JSON.stringify(userData[username]))
-          : resolve(JSON.stringify(userData));
+        const userData = JSON.parse(userDataJSON);
+        const allUsersData = this.removeSensitiveInfo(userData);
+        if (username === "") {
+          resolve(JSON.stringify(allUsersData));
+        } else if (userData[username]) {
+          resolve(JSON.stringify(userData[username]));
+        } else {
+          reject({ code: 401, message: ERROR_MESSAGES[401].USER });
+        }
       } catch (err) {
         reject({ ...err });
       }

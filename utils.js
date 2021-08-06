@@ -1,4 +1,4 @@
-function checkUserInput(payload, keys) {
+const checkUserInput = (payload, keys) => {
   if (!payload) {
     return false;
   }
@@ -7,6 +7,15 @@ function checkUserInput(payload, keys) {
   return keys.reduce((result, key) => {
     return result && keyArr.includes(key);
   }, true);
-}
+};
 
-module.exports = { checkUserInput };
+const responseSender = (promise, res) => {
+  return promise
+    .then((userData) => res.status(200).json(userData))
+    .catch((err) => {
+      const { message } = err;
+      res.status(401).json({ error: message });
+    });
+};
+
+module.exports = { checkUserInput, responseSender };

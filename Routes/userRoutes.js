@@ -1,3 +1,4 @@
+const { responseSender } = require("../utils");
 const express = require("express"),
   router = express.Router();
 
@@ -5,24 +6,12 @@ const { UserController } = require("../Controllers/UserController"),
   userController = new UserController();
 
 router.get("/", (req, res) => {
-  userController
-    .getUsers()
-    .then((data) => res.status(200).json(data))
-    .catch((err) => {
-      const { code, message } = err;
-      res.status(code).json({ error: message });
-    });
+  responseSender(userController.getUsers(), res);
 });
 
-router.get("/:userId", (req, res) => {
-  const userId = req.params.userId;
-  userController
-    .getUsers(userId)
-    .then((data) => res.status(200).json(data))
-    .catch((err) => {
-      const { code, message } = err;
-      res.status(code || 500).json({ error: message });
-    });
+router.get("/:username", (req, res) => {
+  const username = req.params.username;
+  responseSender(userController.getUsers(username), res);
 });
 
 router.get("/query/:queryString", (req, res) => {
