@@ -95,7 +95,16 @@ class ChatRoomController extends DB {
           });
         }
 
-        payload.participants
+        const participants = [...new Set(payload.participants)];
+
+        if (participants.length === 1 && payload.type === "group") {
+          reject({
+            code: 400,
+            message: ERROR_MESSAGES[400].NOT_ENOUGH_PARTICIPANTS,
+          });
+        }
+
+        participants
           .filter((user) => users[user])
           .forEach((user) => {
             if (payload.type === "personal") {
@@ -124,7 +133,7 @@ class ChatRoomController extends DB {
         await this.writeToDB(newChatRoomsJSON);
         await userController.writeToDB(newUsersJSON);
 
-        resolve({ payload, messageHistory: [] });
+        resolve(JSON.stringify({ payload, messageHistory: [] }));
       } catch (err) {
         reject({
           ...err,

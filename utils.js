@@ -9,13 +9,13 @@ const checkUserInput = (payload, keys) => {
   }, true);
 };
 
-const responseSender = (promise, res) => {
-  return promise
+const responseSender = (promise, res) =>
+  promise
     .then((userData) => res.status(200).json(userData))
     .catch((err) => {
       const { message } = err;
+      console.log(err);
       res.status(401).json({ error: message });
     });
-};
 
 module.exports = { checkUserInput, responseSender };
