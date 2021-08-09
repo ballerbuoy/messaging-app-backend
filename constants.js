@@ -14,14 +14,14 @@ const ERROR_MESSAGES = {
     GENERAL: "Invalid request to server",
     USER_EXISTS: "User with the provided username already exists",
     ROOM_EXISTS: "Chat-room with provided ID already exists",
+    ROOM_NOT_EXIST: "Chat-room with provided ID does not exist",
   },
 };
 
 const FILE_PATHS = {
-  USER: "/Users/ballerbuoy/code/practice/server/Database/Data/users.json",
-  MESSAGE: "/Users/ballerbuoy/code/practice/server/Database/Data/messages.json",
-  CHATROOM:
-    "/Users/ballerbuoy/code/practice/server/Database/Data/chatrooms.json",
+  USER: "Database/Data/users.json",
+  MESSAGE: "Database/Data/messages.json",
+  CHATROOM: "Database/Data/chatrooms.json",
 };
 
 module.exports = { ERROR_MESSAGES, FILE_PATHS };

@@ -1,1 +1,51 @@
-{"raghav":{"username":"raghav","password":"yadav","avatar":"https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg","personalChatsSubscribed":[{"roomId":1,"roomName":"Aditya"},{"roomId":2,"roomName":"Rahul"}],"groupChatsSubscribed":["Y71BgZ3xw6KELkZkuyfVI",{"roomId":"V0y67S9oZvtqcXJmxM0YQ","roomName":"New Group Channel"},{"roomId":"0p4sXJr2K6NTWuMJMmBhE","roomName":"naya"}]},"aditya":{"username":"aditya","password":"something","avatar":"https://www.pikpng.com/pngl/b/279-2797047_user-avatar-icon-portable-network-graphics-clipart.png","personalChatsSubscribed":[{"roomId":1,"roomName":"Raghav"},{"roomId":3,"roomName":"Rahul"}],"groupChatsSubscribed":[{"roomId":"V0y67S9oZvtqcXJmxM0YQ","roomName":"New Group Channel"},{"roomId":"0p4sXJr2K6NTWuMJMmBhE","roomName":"naya"}]},"rahul":{"username":"rahul","password":"something","avatar":"https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg","personalChatsSubscribed":[{"roomId":2,"roomName":"Raghav"},{"roomId":3,"roomName":"Aditya"}],"groupChatsSubscribed":[{"roomId":"V0y67S9oZvtqcXJmxM0YQ","roomName":"New Group Channel"},{"roomId":"0p4sXJr2K6NTWuMJMmBhE","roomName":"naya"}]},"ajay":{"username":"ajay","password":"something","avatar":"https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg","personalChatsSubscribed":[],"groupChatsSubscribed":[{"roomId":"V0y67S9oZvtqcXJmxM0YQ","roomName":"New Group Channel"},{"roomId":"0p4sXJr2K6NTWuMJMmBhE","roomName":"naya"}]}}
+{
+  "raghav": {
+    "username": "raghav",
+    "password": "yadav",
+    "avatar": "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+    "personalChatsSubscribed": [
+      { "roomId": 1, "roomName": "Aditya" },
+      { "roomId": 2, "roomName": "Rahul" }
+    ],
+    "groupChatsSubscribed": [
+      { "roomId": "V0y67S9oZvtqcXJmxM0YQ", "roomName": "New Group Channel" },
+      { "roomId": "0p4sXJr2K6NTWuMJMmBhE", "roomName": "naya" }
+    ]
+  },
+  "aditya": {
+    "username": "aditya",
+    "password": "something",
+    "avatar": "https://www.pikpng.com/pngl/b/279-2797047_user-avatar-icon-portable-network-graphics-clipart.png",
+    "personalChatsSubscribed": [
+      { "roomId": 1, "roomName": "Raghav" },
+      { "roomId": 3, "roomName": "Rahul" }
+    ],
+    "groupChatsSubscribed": [
+      { "roomId": "V0y67S9oZvtqcXJmxM0YQ", "roomName": "New Group Channel" },
+      { "roomId": "0p4sXJr2K6NTWuMJMmBhE", "roomName": "naya" }
+    ]
+  },
+  "rahul": {
+    "username": "rahul",
+    "password": "something",
+    "avatar": "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+    "personalChatsSubscribed": [
+      { "roomId": 2, "roomName": "Raghav" },
+      { "roomId": 3, "roomName": "Aditya" }
+    ],
+    "groupChatsSubscribed": [
+      { "roomId": "V0y67S9oZvtqcXJmxM0YQ", "roomName": "New Group Channel" },
+      { "roomId": "0p4sXJr2K6NTWuMJMmBhE", "roomName": "naya" }
+    ]
+  },
+  "ajay": {
+    "username": "ajay",
+    "password": "something",
+    "avatar": "https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg",
+    "personalChatsSubscribed": [],
+    "groupChatsSubscribed": [
+      { "roomId": "V0y67S9oZvtqcXJmxM0YQ", "roomName": "New Group Channel" },
+      { "roomId": "0p4sXJr2K6NTWuMJMmBhE", "roomName": "naya" }
+    ]
+  }
+}
