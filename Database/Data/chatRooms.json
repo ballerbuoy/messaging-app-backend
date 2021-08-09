@@ -16,72 +16,6 @@
         "timestamp": "07:01 AM",
         "sentBy": "aditya",
         "messageId": 1
-      },
-      {
-        "text": "test message",
-        "sentBy": "raghav",
-        "timestamp": "13:58",
-        "messageId": 2
-      },
-      {
-        "text": "ajhsbdjhasbjdhbsajhdbaksbkdjskjbncjkshbchjsa jch ajsh cjshjcba sh chasdjhsbj ckjas ckhjsabc sajbc jhas ckjashb ckjaskc ajs ckasdcjasdkjcas kc askjc knad ck akdj ckas ckj as",
-        "sentBy": "raghav",
-        "timestamp": "17:25",
-        "messageId": 3
-      },
-      {
-        "text": "ajhsbdjhasbjdhbsajhdbaksbkdjskjbncjkshbchjsa jch ajsh cjshjcba sh chasdjhsbj ckjas ckhjsabc sajbc jhas ckjashb ckjaskc ajs ckasdcjasdkjcas kc askjc knad ck akdj ckas ckj as kjbkjbsad sakdjbsa dkjsbad sa kjsabdkjsnd sjbdlksa lknsaldkn lknaslknd sandlasnd lsakndlkasnd ",
-        "sentBy": "raghav",
-        "timestamp": "17:26",
-        "messageId": 4
-      },
-      {
-        "text": "Hey Raghav, this is a test message",
-        "sentBy": "aditya",
-        "timestamp": "17:54",
-        "messageId": 5
-      },
-      {
-        "text": "sahbdjasd asjhbdjash ",
-        "sentBy": "raghav",
-        "timestamp": "19:5",
-        "messageId": 6
-      },
-      {
-        "text": "sjhdasj d",
-        "sentBy": "raghav",
-        "timestamp": "19:7",
-        "messageId": 7
-      },
-      {
-        "text": "asdasdv a",
-        "sentBy": "raghav",
-        "timestamp": "19:7",
-        "messageId": 8
-      },
-      {
-        "text": "sadsa ",
-        "sentBy": "raghav",
-        "timestamp": "19:7",
-        "messageId": 9
-      },
-      {
-        "text": "asdsa",
-        "sentBy": "raghav",
-        "timestamp": "19:7",
-        "messageId": 10
-      },
-      {
-        "text": "asds c",
-        "sentBy": "raghav",
-        "timestamp": "19:7",
-        "messageId": 11
-      },
-      {
-        "text": "you",
-        "sentBy": "raghav",
-        "timestamp": "14:51",
-        "messageId": 12
       }
     ]
   },
@@ -104,12 +38,11 @@
         "messageId": 1
       },
       {
-        "text": "kya kar raha hai bhai?",
+        "text": "chandan\n",
         "sentBy": "raghav",
-        "timestamp": "17:3",
+        "timestamp": "15:27",
         "messageId": 2
-      },
-      { "text": "re", "sentBy": "raghav", "timestamp": "14:57", "messageId": 3 }
+      }
     ]
   },
   "3": {
@@ -132,7 +65,26 @@
       }
     ]
   },
-  "nextRoomId": 4,
+  "4": {
+    "roomId": 4,
+    "roomName": "chatRoom4",
+    "type": "personal",
+    "participants": ["rahul", "ajay"],
+    "messageHistory": [
+      {
+        "text": "Hello Rahul",
+        "timestamp": "07:00 AM",
+        "sentBy": "ajay",
+        "messageId": 0
+      },
+      {
+        "text": "Hello Ajay",
+        "timestamp": "07:01 AM",
+        "sentBy": "rahul",
+        "messageId": 1
+      }
+    ]
+  },
   "V0y67S9oZvtqcXJmxM0YQ": {
     "roomId": "V0y67S9oZvtqcXJmxM0YQ",
     "roomName": "New Group Channel",
@@ -167,36 +119,39 @@
         "messageId": 1
       },
       {
-        "text": "yolo\n",
+        "text": "essage",
         "sentBy": "raghav",
-        "timestamp": "14:39",
+        "timestamp": "15:12",
         "messageId": 2
-      },
-      {
-        "text": "blll",
-        "sentBy": "raghav",
-        "timestamp": "14:46",
-        "messageId": 3
-      },
-      {
-        "text": "test",
-        "sentBy": "raghav",
-        "timestamp": "14:46",
-        "messageId": 4
-      },
-      {
-        "text": "sending",
-        "sentBy": "raghav",
-        "timestamp": "14:50",
-        "messageId": 5
-      },
-      {
-        "text": "message",
-        "sentBy": "raghav",
-        "timestamp": "14:55",
-        "messageId": 6
-      },
-      { "text": "t3", "sentBy": "raghav", "timestamp": "14:58", "messageId": 7 }
+      }
     ]
+  },
+  "W7W3cZ0H2mc-aJ4z-W7Bc": {
+    "roomId": "W7W3cZ0H2mc-aJ4z-W7Bc",
+    "roomName": "another group",
+    "type": "group",
+    "participants": ["aditya", "ajay"],
+    "messageHistory": []
+  },
+  "gkgaOY7g6ZXf_eiYzoYCo": {
+    "roomId": "gkgaOY7g6ZXf_eiYzoYCo",
+    "roomName": "test channel",
+    "type": "group",
+    "participants": ["raghav", "ajay"],
+    "messageHistory": []
+  },
+  "KBsGblW2lNf2xcIzWzUK6": {
+    "roomId": "KBsGblW2lNf2xcIzWzUK6",
+    "roomName": "new test channel",
+    "type": "group",
+    "participants": ["raghav", "aditya", "raghav"],
+    "messageHistory": []
+  },
+  "a2DiM4PhMFwaxd09cBILB": {
+    "roomId": "a2DiM4PhMFwaxd09cBILB",
+    "roomName": "test ",
+    "type": "group",
+    "participants": ["rahul", "aditya", "raghav"],
+    "messageHistory": []
   }
 }

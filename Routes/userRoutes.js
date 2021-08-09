@@ -20,9 +20,9 @@ router.get("/query/:queryString", (req, res) => {
     .getUsers()
     .then((usersJSON) => {
       const users = JSON.parse(usersJSON);
-      const result = Object.keys(users)
-        .filter((username) => username.includes(queryString))
-        .map((username) => ({ username: username, avatar: [users.avatar] }));
+      const result = users.filter((user) =>
+        user.username.includes(queryString)
+      );
       res.status(200).json(JSON.stringify(result));
     })
     .catch((err) => {

@@ -15,6 +15,7 @@ const ERROR_MESSAGES = {
     USER_EXISTS: "User with the provided username already exists",
     ROOM_EXISTS: "Chat-room with provided ID already exists",
     ROOM_NOT_EXIST: "Chat-room with provided ID does not exist",
+    NOT_ENOUGH_PARTICIPANTS: "Not enough participants to create a room",
   },
 };
 
