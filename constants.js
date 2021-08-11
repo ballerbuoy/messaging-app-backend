@@ -13,9 +13,12 @@ const ERROR_MESSAGES = {
   400: {
     GENERAL: "Invalid request to server",
     USER_EXISTS: "User with the provided username already exists",
+    USER_NOT_EXISTS: "User with the provided username does not exist",
     ROOM_EXISTS: "Chat-room with provided ID already exists",
     ROOM_NOT_EXIST: "Chat-room with provided ID does not exist",
     NOT_ENOUGH_PARTICIPANTS: "Not enough participants to create a room",
+    NO_MORE_MESSAGES: "No more messages in this chatroom",
+    INVALID_CURSOR: "The cursor sent was invalid",
   },
 };
 
@@ -25,4 +28,6 @@ const FILE_PATHS = {
   CHATROOM: "Database/Data/chatrooms.json",
 };
 
-module.exports = { ERROR_MESSAGES, FILE_PATHS };
+const PAGE_SIZE = 5;
+
+module.exports = { ERROR_MESSAGES, FILE_PATHS, PAGE_SIZE };
