@@ -19,6 +19,7 @@ const responseSender = (promise, res) =>
     });
 
 const binarySearch = (arr, key) => {
+  if (!arr.length) return undefined;
   let low = 0,
     high = arr.length,
     ans = undefined;

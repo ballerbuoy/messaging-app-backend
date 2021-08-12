@@ -30,6 +30,7 @@ router.get("/getNewMessages/:roomId/:cursor", (req, res) => {
 
 router.post("/", (req, res) => {
   const payload = req.body;
+  console.log(payload);
   responseSender(chatRoomController.createChatRoom(payload), res);
 });
 

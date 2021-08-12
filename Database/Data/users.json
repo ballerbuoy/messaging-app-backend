@@ -31,7 +31,8 @@
       { "roomId": "W7W3cZ0H2mc-aJ4z-W7Bc", "roomName": "another group" },
       { "roomId": "KBsGblW2lNf2xcIzWzUK6", "roomName": "new test channel" },
       { "roomId": "a2DiM4PhMFwaxd09cBILB", "roomName": "test " },
-      { "roomId": "Sv7xFDm58ZrUdsNJtmQ8V", "roomName": "new group chat" }
+      { "roomId": "Sv7xFDm58ZrUdsNJtmQ8V", "roomName": "new group chat" },
+      { "roomId": "gkgaOY7g6ZXf_eiYzoYCo", "roomName": "test channel" }
     ]
   },
   "rahul": {
@@ -46,7 +47,10 @@
       { "roomId": "V0y67S9oZvtqcXJmxM0YQ", "roomName": "New Group Channel" },
       { "roomId": "0p4sXJr2K6NTWuMJMmBhE", "roomName": "naya" },
       { "roomId": "a2DiM4PhMFwaxd09cBILB", "roomName": "test " },
-      { "roomId": "W7W3cZ0H2mc-aJ4z-W7Bc", "roomName": "another group" }
+      { "roomId": "W7W3cZ0H2mc-aJ4z-W7Bc", "roomName": "another group" },
+      { "roomId": "KBsGblW2lNf2xcIzWzUK6", "roomName": "new test channel" },
+      { "roomId": "KBsGblW2lNf2xcIzWzUK6", "roomName": "new test channel" },
+      { "roomId": "gkgaOY7g6ZXf_eiYzoYCo", "roomName": "test channel" }
     ]
   },
   "ajay": {
@@ -62,7 +66,9 @@
       { "roomId": "0p4sXJr2K6NTWuMJMmBhE", "roomName": "naya" },
       { "roomId": "W7W3cZ0H2mc-aJ4z-W7Bc", "roomName": "another group" },
       { "roomId": "gkgaOY7g6ZXf_eiYzoYCo", "roomName": "test channel" },
-      { "roomId": "Sv7xFDm58ZrUdsNJtmQ8V", "roomName": "new group chat" }
+      { "roomId": "Sv7xFDm58ZrUdsNJtmQ8V", "roomName": "new group chat" },
+      { "roomId": "a2DiM4PhMFwaxd09cBILB", "roomName": "test " },
+      { "roomId": "KBsGblW2lNf2xcIzWzUK6", "roomName": "new test channel" }
     ]
   }
 }

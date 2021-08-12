@@ -56,6 +56,32 @@ class UserController extends DB {
     });
   }
 
+  getUserRooms(username) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const userDataJSON = await this.readFromDB();
+        const userData = JSON.parse(userDataJSON);
+
+        if (!userData[username]) {
+          reject({
+            code: 400,
+            message: ERROR_MESSAGES[400].USER_NOT_EXISTS,
+          });
+        } else {
+          resolve(
+            JSON.stringify({
+              personalChatsSubscribed:
+                userData[username].personalChatsSubscribed,
+              groupChatsSubscribed: userData[username].groupChatsSubscribed,
+            })
+          );
+        }
+      } catch (err) {
+        reject({ ...err });
+      }
+    });
+  }
+
   createUser() {
     return new Promise(async (resolve, reject) => {
       try {

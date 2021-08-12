@@ -14,6 +14,11 @@ router.get("/:username", (req, res) => {
   responseSender(userController.getUsers(username), res);
 });
 
+router.get("/getRooms/:username", (req, res) => {
+  const username = req.params.username;
+  responseSender(userController.getUserRooms(username), res);
+});
+
 router.get("/query/:queryString", (req, res) => {
   const queryString = req.params.queryString;
   userController
