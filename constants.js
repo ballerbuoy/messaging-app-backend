@@ -28,6 +28,6 @@ const FILE_PATHS = {
   CHATROOM: "Database/Data/chatrooms.json",
 };
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10;
 
 module.exports = { ERROR_MESSAGES, FILE_PATHS, PAGE_SIZE };
