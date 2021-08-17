@@ -1,5 +1,10 @@
 const { DB } = require("../Database/DB");
-const { FILE_PATHS, ERROR_MESSAGES, PAGE_SIZE } = require("../constants");
+const {
+  FILE_PATHS,
+  ERROR_MESSAGES,
+  PAGE_SIZE,
+  GROUP_TYPE,
+} = require("../constants");
 const { checkUserInput, binarySearch } = require("../utils");
 const { UserController } = require("./UserController");
 
@@ -20,17 +25,15 @@ class ChatRoomController extends DB {
             message: ERROR_MESSAGES[400].ROOM_NOT_EXIST,
           });
         }
-        const curRoomMessageHistory = chatRoomData[roomId].messageHistory;
-        const sendRoomMessageHistory =
-          curRoomMessageHistory.length < PAGE_SIZE
-            ? curRoomMessageHistory
-            : curRoomMessageHistory.slice(
-                curRoomMessageHistory.length - PAGE_SIZE
-              );
+        const messageHistory = chatRoomData[roomId].messageHistory;
+        const messageHistoryToSend =
+          messageHistory.length < PAGE_SIZE
+            ? messageHistory
+            : messageHistory.slice(messageHistory.length - PAGE_SIZE);
 
         const sendChatRoomData = {
           ...chatRoomData[roomId],
-          messageHistory: sendRoomMessageHistory,
+          messageHistory: messageHistoryToSend,
         };
         resolve(JSON.stringify(sendChatRoomData));
       } catch (err) {
@@ -116,10 +119,10 @@ class ChatRoomController extends DB {
 
         const participants = [...new Set(payload.participants)];
 
-        const trueParticipants = participants.filter((user) => users[user]);
+        const participatingUsers = participants.filter((user) => users[user]);
 
-        if (trueParticipants.length === 1) {
-          if (payload.type === "group") {
+        if (participatingUsers.length === 1) {
+          if (payload.type === GROUP_TYPE.GROUP) {
             reject({
               code: 400,
               message: ERROR_MESSAGES[400].NOT_ENOUGH_PARTICIPANTS,
@@ -131,8 +134,8 @@ class ChatRoomController extends DB {
             });
           }
         } else {
-          trueParticipants.forEach((user) => {
-            if (payload.type === "personal") {
+          participatingUsers.forEach((user) => {
+            if (payload.type === GROUP_TYPE.PERSONAL) {
               users[user].personalChatsSubscribed = [
                 ...users[user].personalChatsSubscribed,
                 {
@@ -217,7 +220,6 @@ class ChatRoomController extends DB {
           resolve(JSON.stringify({ roomId, participant }));
         }
       } catch (err) {
-        console.log(err);
         reject({
           ...err,
         });
@@ -299,7 +301,6 @@ class ChatRoomController extends DB {
 
         resolve(JSON.stringify(curChatRoomMessages.slice(startIndx)));
       } catch (err) {
-        console.log(err);
         reject({ ...err });
       }
     });

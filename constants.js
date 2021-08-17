@@ -16,7 +16,7 @@ const ERROR_MESSAGES = {
     USER_NOT_EXISTS: "User with the provided username does not exist",
     ROOM_EXISTS: "Chat-room with provided ID already exists",
     ROOM_NOT_EXIST: "Chat-room with provided ID does not exist",
-    NOT_ENOUGH_PARTICIPANTS: "Not enough participants to create a room",
+    NOT_ENOUGH_PARTICIPANTS: "Require atleast 2 participants to create a room",
     NO_MORE_MESSAGES: "No more messages in this chatroom",
     INVALID_CURSOR: "The cursor sent was invalid",
   },
@@ -25,9 +25,14 @@ const ERROR_MESSAGES = {
 const FILE_PATHS = {
   USER: "Database/Data/users.json",
   MESSAGE: "Database/Data/messages.json",
-  CHATROOM: "Database/Data/chatrooms.json",
+  CHATROOM: "Database/Data/chatRooms.json",
+};
+
+const GROUP_TYPE = {
+  PERSONAL: "personal",
+  GROUP: "group",
 };
 
 const PAGE_SIZE = 10;
 
-module.exports = { ERROR_MESSAGES, FILE_PATHS, PAGE_SIZE };
+module.exports = { ERROR_MESSAGES, FILE_PATHS, PAGE_SIZE, GROUP_TYPE };
