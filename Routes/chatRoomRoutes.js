@@ -18,13 +18,11 @@ router.post("/:roomId", (req, res) => {
 
 router.get("/getPrevMessages/:roomId/:cursor", (req, res) => {
   const { roomId, cursor } = req.params;
-  console.log(roomId, cursor);
   responseSender(chatRoomController.getPrevMessages(roomId, cursor), res);
 });
 
 router.get("/getNewMessages/:roomId/:cursor", (req, res) => {
   const { roomId, cursor } = req.params;
-  console.log(roomId, cursor);
   responseSender(chatRoomController.getNewMessages(roomId, cursor), res);
 });
 
@@ -35,7 +33,6 @@ router.post("/", (req, res) => {
 
 router.post("/addParticipant/:roomId", (req, res) => {
   const payload = req.body;
-  console.log(payload);
   responseSender(chatRoomController.addParticipant(payload), res);
 });
 

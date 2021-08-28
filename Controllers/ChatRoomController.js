@@ -1,5 +1,10 @@
 const { DB } = require("../Database/DB");
-const { FILE_PATHS, ERROR_MESSAGES, PAGE_SIZE } = require("../constants");
+const {
+  FILE_PATHS,
+  ERROR_MESSAGES,
+  PAGE_SIZE,
+  GROUP_TYPE,
+} = require("../constants");
 const { checkUserInput, binarySearch } = require("../utils");
 const { UserController } = require("./UserController");
 
@@ -20,17 +25,15 @@ class ChatRoomController extends DB {
             message: ERROR_MESSAGES[400].ROOM_NOT_EXIST,
           });
         }
-        const curRoomMessageHistory = chatRoomData[roomId].messageHistory;
-        const sendRoomMessageHistory =
-          curRoomMessageHistory.length < PAGE_SIZE
-            ? curRoomMessageHistory
-            : curRoomMessageHistory.slice(
-                curRoomMessageHistory.length - PAGE_SIZE
-              );
+        const messageHistory = chatRoomData[roomId].messageHistory;
+        const messageHistoryToSend =
+          messageHistory.length < PAGE_SIZE
+            ? messageHistory
+            : messageHistory.slice(messageHistory.length - PAGE_SIZE);
 
         const sendChatRoomData = {
           ...chatRoomData[roomId],
-          messageHistory: sendRoomMessageHistory,
+          messageHistory: messageHistoryToSend,
         };
         resolve(JSON.stringify(sendChatRoomData));
       } catch (err) {
@@ -116,47 +119,54 @@ class ChatRoomController extends DB {
 
         const participants = [...new Set(payload.participants)];
 
-        const trueParticipants = participants.filter((user) => users[user]);
+        const participatingUsers = participants.filter((user) => users[user]);
 
-        if (trueParticipants.length <= 1) {
-          reject({
-            code: 400,
-            message: ERROR_MESSAGES[400].NOT_ENOUGH_PARTICIPANTS,
-          });
-        }
-
-        trueParticipants.forEach((user) => {
-          if (payload.type === "personal") {
-            users[user].personalChatsSubscribed = [
-              ...users[user].personalChatsSubscribed,
-              {
-                roomId: payload.roomId,
-                roomName:
-                  user === payload.creator ? payload.added : payload.creator,
-              },
-            ];
+        if (participatingUsers.length === 1) {
+          if (payload.type === GROUP_TYPE.GROUP) {
+            reject({
+              code: 400,
+              message: ERROR_MESSAGES[400].NOT_ENOUGH_PARTICIPANTS,
+            });
           } else {
-            users[user].groupChatsSubscribed = [
-              ...users[user].groupChatsSubscribed,
-              { roomId: payload.roomId, roomName: payload.roomName },
-            ];
+            reject({
+              code: 400,
+              message: ERROR_MESSAGES[400].USER_NOT_EXISTS,
+            });
           }
-        });
+        } else {
+          participatingUsers.forEach((user) => {
+            if (payload.type === GROUP_TYPE.PERSONAL) {
+              users[user].personalChatsSubscribed = [
+                ...users[user].personalChatsSubscribed,
+                {
+                  roomId: payload.roomId,
+                  roomName:
+                    user === payload.creator ? payload.added : payload.creator,
+                },
+              ];
+            } else {
+              users[user].groupChatsSubscribed = [
+                ...users[user].groupChatsSubscribed,
+                { roomId: payload.roomId, roomName: payload.roomName },
+              ];
+            }
+          });
 
-        const newChatRooms = {
-          ...existingChatRooms,
-          [payload.roomId]: {
-            ...payload,
-            messageHistory: [],
-          },
-        };
+          const newChatRooms = {
+            ...existingChatRooms,
+            [payload.roomId]: {
+              ...payload,
+              messageHistory: [],
+            },
+          };
 
-        const newChatRoomsJSON = JSON.stringify(newChatRooms);
-        const newUsersJSON = JSON.stringify(users);
-        await this.writeToDB(newChatRoomsJSON);
-        await userController.writeToDB(newUsersJSON);
+          const newChatRoomsJSON = JSON.stringify(newChatRooms);
+          const newUsersJSON = JSON.stringify(users);
+          await this.writeToDB(newChatRoomsJSON);
+          await userController.writeToDB(newUsersJSON);
 
-        resolve(JSON.stringify({ payload, messageHistory: [] }));
+          resolve(JSON.stringify({ payload, messageHistory: [] }));
+        }
       } catch (err) {
         reject({
           ...err,
@@ -191,26 +201,25 @@ class ChatRoomController extends DB {
         }
 
         if (chatRoomData[roomId].participants.includes(participant)) {
-          resolve(JSON.stringify(payload));
+          resolve(JSON.stringify({ roomId, participant }));
+        } else {
+          users[participant].groupChatsSubscribed = [
+            ...users[participant].groupChatsSubscribed,
+            { roomId, roomName: chatRoomData[roomId].roomName },
+          ];
+
+          const curChatRoom = { ...chatRoomData[roomId] };
+          curChatRoom.participants = [...curChatRoom.participants, participant];
+
+          chatRoomData[roomId] = curChatRoom;
+          const newChatRoomJSON = JSON.stringify(chatRoomData);
+          const newUsersJSON = JSON.stringify(users);
+          await userController.writeToDB(newUsersJSON);
+          await this.writeToDB(newChatRoomJSON);
+
+          resolve(JSON.stringify({ roomId, participant }));
         }
-
-        users[participant].groupChatsSubscribed = [
-          ...users[participant].groupChatsSubscribed,
-          { roomId, roomName: chatRoomData[roomId].roomName },
-        ];
-
-        const curChatRoom = chatRoomData[roomId];
-        curChatRoom.participants = [...curChatRoom.participants, participant];
-
-        chatRoomData[roomId] = curChatRoom;
-        const newChatRoomJSON = JSON.stringify(chatRoomData);
-        const newUsersJSON = JSON.stringify(users);
-        await userController.writeToDB(newUsersJSON);
-        await this.writeToDB(newChatRoomJSON);
-
-        resolve(JSON.stringify(payload));
       } catch (err) {
-        console.log(err);
         reject({
           ...err,
         });
@@ -271,6 +280,11 @@ class ChatRoomController extends DB {
         }
 
         const curChatRoomMessages = chatRoomData[roomId].messageHistory;
+
+        if (!curChatRoomMessages.length) {
+          resolve(JSON.stringify([]));
+        }
+
         const cursorIndx = binarySearch(curChatRoomMessages, cursor);
 
         if (cursorIndx === undefined) {
